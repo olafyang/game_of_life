@@ -111,7 +111,10 @@ def pretty_print(state):
 
 
 def run():
-	state = init_random_state(15, 15)
+	length_row = int(input('Length of Row:'))
+	length_column = int(input('Length of Column:'))
+	delay = float(input('Time Between Updates:'))
+	state = init_random_state(length_row, length_column)
 	pretty_print(state)
 
 	while True:
@@ -125,7 +128,7 @@ def run():
 				os.system('cls')
 
 			pretty_print(state)
-			time.sleep(1)
+			time.sleep(delay)
 		except KeyboardInterrupt:
 			break
 
