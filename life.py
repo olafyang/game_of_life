@@ -1,6 +1,7 @@
 import random
 import time
-
+import os
+import sys
 
 def init_dead_state(width, height):
 	temp = [0] * width
@@ -106,15 +107,23 @@ def pretty_print(state):
 			else:
 				print(' ', end='')
 		print()
-	print('--------------------------')
+	#print('--------------------------')
 
 
 def run():
 	state = init_random_state(15, 15)
 	pretty_print(state)
+
 	while True:
 		try:
 			state = calc_next_state(state)
+
+			# Clear screen before printing again
+			if sys.platform == 'linux' or sys.platform == 'darwin': # Linux or macOS
+				os.system('clear')
+			elif sys.platform == 'win32': # Windows
+				os.system('cls')
+
 			pretty_print(state)
 			time.sleep(1)
 		except KeyboardInterrupt:
